@@ -101,10 +101,6 @@ CREATE UNIQUE INDEX usuario_usu_username_Idx ON usuario (usu_username) USING BTR
 
 CREATE INDEX usuario_usu_username_usu_password_Idx ON usuario (usu_username, usu_password) USING BTREE;
 
-
-
-
-
 /************ Add Foreign Keys ***************/
 
 /* Add Foreign Key: fk_descarga_item */
