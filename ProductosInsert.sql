@@ -7,6 +7,9 @@ VALUES("MotherBoard");
 INSERT INTO categoria (cat_nombre)
 VALUES("Memoria Ram");
 
+INSERT INTO categoria (cat_nombre)
+VALUES("Tarjetas de Video");
+
 
 INSERT INTO subcategoria (scat_nombre, scat_categoria_id)
 VALUES("AMD",1);

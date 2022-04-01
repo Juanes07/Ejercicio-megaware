@@ -1,4 +1,4 @@
-package com.sofka.repository;
+package com.sofka.repositories;
 
 import com.sofka.domain.Descarga;
 import org.springframework.data.repository.CrudRepository;
