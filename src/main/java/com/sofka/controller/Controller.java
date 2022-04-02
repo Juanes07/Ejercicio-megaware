@@ -11,15 +11,11 @@ import com.sofka.utility.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -158,8 +154,27 @@ public class Controller {
         return itemService.getItemAsc();
     }
 
+    @DeleteMapping(path="/api/v1/category/{id}")
+    public ResponseEntity<Categoria> delete(@PathVariable ("id") Categoria categoria) {
+      log.info("Categoria a borrar: {}", categoria);
+      categoryService.delete(categoria);
+      return  new ResponseEntity(categoria,HttpStatus.OK);
+    }
 
+    @DeleteMapping(path="/api/v1/subcategory/{id}")
+    public ResponseEntity<Subcategoria> delete(@PathVariable ("id") Subcategoria subcategoria) {
+        log.info("Subcategoria a borrar: {}", subcategoria);
+        subCategoryService.delete(subcategoria);
+        return  new ResponseEntity(subcategoria,HttpStatus.OK);
+    }
 
+    @PutMapping(path = "/api/v1/category/")
+    public ResponseEntity<Categoria> updateCategoryName(Categoria categoria){
+        log.info("categoria a modificar: {}", categoria);
+        response.data = categoria;
+        categoryService .updateCategory(categoria);
+        return  new ResponseEntity<>(categoria, HttpStatus.OK);
+    }
 
 
     private void getErrorMessageInternal(Exception exception) {

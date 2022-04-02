@@ -8,13 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.Date;
 
 
 @Data
 @Entity
 @Table(name = "categoria")
-public class Categoria {
+public class Categoria implements Serializable {
+
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cat_id", unique = true, nullable = false)

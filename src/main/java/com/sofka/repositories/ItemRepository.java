@@ -21,4 +21,6 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
     @Modifying
     @Query(value = "SELECT * From item ORDER BY itm_nombre ASC ", nativeQuery = true)
     List<Item> getItemAsc();
+
+
 }

@@ -21,4 +21,6 @@ public class ItemService {
     public List<Item> getItemAsc(){
         return (List<Item>) itemRepository.getItemAsc();
     }
+
+
 }
