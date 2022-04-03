@@ -26,8 +26,8 @@ public class CategoryService implements ICategoryService{
 
 
     @Transactional
-    public void updateCategory(Categoria categoria){
-        categoriaRepository.updateCategory(categoria.getNameCategory());
+    public void updateCategory(Categoria categoria, Integer idCategory){
+        categoriaRepository.updateCategory(idCategory,categoria.getNameCategory());
     }
 
     @Override

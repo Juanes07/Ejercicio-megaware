@@ -27,6 +27,7 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Integer> 
     @Modifying
     @Query("UPDATE Categoria cat set cat.nameCategory = :nameCategory where cat.idCategory = :id")
     public void updateCategory(
+            @Param(value = "id")Integer idCategory,
             @Param(value = "nameCategory") String nameCategory
     );
 

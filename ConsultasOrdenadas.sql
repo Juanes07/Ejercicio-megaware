@@ -39,3 +39,14 @@ SELECT itm_id as item_id,
 itm_nombre as item_nombre
 FROM megaware.item  
 ORDER BY item_nombre DESC;
+
+SELECT dwn_id as descarga_id,
+dwn_usuario_id as descarga_usuario_id,
+dwn_item_id as descarga_item_id,
+dwn_created_at as descarga_fecha
+FROM megaware.descarga;
+
+DELETE subcategoria.* from subcategoria
+JOIN categoria
+ON categoria.cat_id = scat_categoria_id
+WHERE categoria.cat_id = 3;

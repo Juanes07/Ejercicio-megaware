@@ -85,4 +85,14 @@ VALUES("Vengeance RGB",6);
 INSERT INTO item (itm_nombre, itm_subcategoria_id)
 VALUES("Vengeance Dominator",6);
 
+INSERT INTO usuario (usu_username, usu_password)
+VALUES("Juan",1234);
+
+INSERT INTO descarga (dwn_usuario_id, dwn_item_id)
+VALUES(1,1);
+
+INSERT INTO descarga (dwn_usuario_id, dwn_item_id)
+VALUES(1,2);
+
+
 

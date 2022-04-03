@@ -1,9 +1,8 @@
 package com.sofka.controller;
 
-import com.sofka.domain.Categoria;
-import com.sofka.domain.Item;
-import com.sofka.domain.Subcategoria;
+import com.sofka.domain.*;
 import com.sofka.service.CategoryService;
+import com.sofka.service.DescargaService;
 import com.sofka.service.ItemService;
 import com.sofka.service.SubCategoryService;
 import com.sofka.utility.LoginData;
@@ -24,6 +23,9 @@ import java.util.List;
 public class Controller {
 
     @Autowired
+    DescargaService descargaService;
+
+    @Autowired
     CategoryService categoryService;
 
     @Autowired
@@ -31,6 +33,7 @@ public class Controller {
 
     @Autowired
     ItemService itemService;
+
 
 
     /**
@@ -161,19 +164,40 @@ public class Controller {
       return  new ResponseEntity(categoria,HttpStatus.OK);
     }
 
-    @DeleteMapping(path="/api/v1/subcategory/{id}")
-    public ResponseEntity<Subcategoria> delete(@PathVariable ("id") Subcategoria subcategoria) {
-        log.info("Subcategoria a borrar: {}", subcategoria);
-        subCategoryService.delete(subcategoria);
-        return  new ResponseEntity(subcategoria,HttpStatus.OK);
-    }
+//    @DeleteMapping(path="/api/v1/subcategory/{id}")
+//    public ResponseEntity<Subcategoria> delete(@PathVariable ("id") Subcategoria subcategoria) {
+//        log.info("Subcategoria a borrar: {}", subcategoria);
+//        subCategoryService.delete(subcategoria);
+//        return  new ResponseEntity(subcategoria,HttpStatus.OK);
+//    }
 
-    @PutMapping(path = "/api/v1/category/")
-    public ResponseEntity<Categoria> updateCategoryName(Categoria categoria){
+    @PatchMapping (path = "/api/v1/category/namecategory")
+    public ResponseEntity<Categoria> updateCategoryName(Categoria categoria, Integer idCategory){
         log.info("categoria a modificar: {}", categoria);
         response.data = categoria;
-        categoryService .updateCategory(categoria);
+        categoryService.updateCategory(categoria, idCategory);
         return  new ResponseEntity<>(categoria, HttpStatus.OK);
+    }
+
+    @PatchMapping (path = "/api/v1/subcategory/namesubcategory")
+    public ResponseEntity<Subcategoria> updateSubCategoryName(Subcategoria subcategoria, Integer idSubCategory){
+        log.info("subcategoria a modificar: {}", subcategoria);
+        response.data = subcategoria;
+        subCategoryService.updateSubCategory(subcategoria, idSubCategory);
+        return  new ResponseEntity<>(subcategoria, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/api/vi/download")
+    public List<Descarga> getDownloadByUser(Descarga descarga){
+        try {
+            response.message = "Todo OK";
+            httpStatus = HttpStatus.OK;
+        } catch (DataAccessException exception) {
+            getErrorMessageForResponse(exception);
+        } catch (Exception exception) {
+            getErrorMessageInternal(exception);
+        }
+        return descargaService.getDownloadByUser(descarga);
     }
 
 

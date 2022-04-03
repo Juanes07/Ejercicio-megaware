@@ -29,4 +29,9 @@ public class SubCategoryService implements  ISubCategoryService{
         subCategoriaRespository.delete(subcategoria);
     }
 
+    @Transactional
+    public void updateSubCategory(Subcategoria subcategoria, Integer idCategory){
+        subCategoriaRespository.updateCategory(idCategory, subcategoria.getNameSubCategory());
+    }
+
 }

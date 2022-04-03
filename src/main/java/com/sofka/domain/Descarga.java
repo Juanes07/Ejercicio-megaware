@@ -20,8 +20,13 @@ public class Descarga {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dwn_id", nullable = false)
     private Integer id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dwn_usuario_id")
     private Usuario dwnUsuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dwn_item_id")
+    private Item dwnItem;
 
 }

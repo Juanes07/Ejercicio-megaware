@@ -24,8 +24,15 @@ public interface SubCategoriaRespository extends CrudRepository<Subcategoria, In
     @Query(value = "SELECT * From subcategoria ORDER BY scat_created_at ASC ", nativeQuery = true)
     List<Subcategoria> getSubCategoriaOrderAsc();
 
-    @Transactional
+//    @Transactional
+//    @Modifying
+//    @Query(value = "DELETE nameSubCategory FROM subcategoria JOIN categoria on categoria.id = cat_id WHERE ", nativeQuery = true)
+//    public void deleteSubCategoriaBy(@Param(value = "id")Subcategoria subcategoria);
+
     @Modifying
-    @Query(value = "DELETE From subcategoria  WHERE scat_categoria_id = id", nativeQuery = true)
-    public void deleteSubCategoriaBy(@Param(value = "id")Subcategoria subcategoria);
+    @Query("UPDATE Subcategoria subcat set subcat.nameSubCategory = :nameSubCategory where subcat.idSubCategory = :id")
+    public void updateCategory(
+            @Param(value = "id")Integer idSubCategory,
+            @Param(value = "nameSubCategory") String nameSubCategory
+    );
 }
